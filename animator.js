@@ -67,8 +67,9 @@ class Animator {
                 this.width * scale, this.height * scale);
             ctx.restore();
         }
-        if (PARAMS.DEBUG) {
-            ctx.strokeStyle = 'Red';
+
+        if (PARAMS.DEBUG) { // animation border, not collision border
+            ctx.strokeStyle = 'Green';
             ctx.strokeRect(x, y, this.width * scale, this.height * scale);
         }
     };
@@ -83,23 +84,3 @@ class Animator {
         return (this.elapsedTime >= this.totalTime);
     };
 };
-
-
-// Implementation:
-// class Mario {
-//     constructor (..){
-//         ...
-//         this.animation = new Animator(this.spritesheet, 239, 52, 16, 32, 3, 0.5, 14, false);
-//         ...
-//     }
-//     update(){
-//         ...
-//     }
-//     draw(ctx){
-//         this.animation.drawFrame(this.game.clockTick, ctx, 0, 0, 3);  //game is gameengine. You can find clockTick variable inside the loop() function of the gameengine class.
-//     }
-// }
-
-
-// in actual implementation, professor created a function called loadAnimation where he classified animations by size, facing, and state.
-// he called loadAnimation inside the constructor, and also called drawFrame() method in draw() function

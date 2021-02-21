@@ -10,6 +10,7 @@ class GameEngine {
         this.left = false;
         this.right = false;
         this.click = null;
+        this.mouse = null;
     };
 
     init(ctx) {
@@ -38,8 +39,13 @@ class GameEngine {
         }
 
         this.ctx.canvas.addEventListener("click", function (e) {
-            console.log(getXandY(e));
+            //console.log(getXandY(e));
             that.click = getXandY(e);
+        }, false);
+
+        this.ctx.canvas.addEventListener("mousemove", function (e) {
+            //console.log(getXandY(e));
+            that.mouse = getXandY(e);
         }, false);
 
         this.ctx.canvas.addEventListener("keydown", function (e) {
@@ -78,6 +84,7 @@ class GameEngine {
         for (var i = 0; i < this.entities.length; i++) {
             this.entities[i].draw(this.ctx);
         }
+        this.camera.draw(this.ctx);
     };
 
     update() {
@@ -90,7 +97,8 @@ class GameEngine {
                 entity.update();
             }
         }
-
+        this.camera.update();
+        
         for (var i = this.entities.length - 1; i >= 0; --i) {
             if (this.entities[i].removeFromWorld) {
                 this.entities.splice(i, 1);

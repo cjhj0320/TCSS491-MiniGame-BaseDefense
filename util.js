@@ -28,7 +28,7 @@ window.requestAnimFrame = (function () {
 // add global parameters here
 
 var PARAMS = {
-    DEBUG: false,
+    DEBUG: true,
     CANVAS_WIDTH: 1400,
     CANVAS_HEIGTH: 700,
     BACKGROUND_WIDTH: 5226/2,

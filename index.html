@@ -14,17 +14,23 @@
     <script type="text/javascript" src="./animator.js"></script>
     <script type="text/javascript" src="./boundingbox.js"></script>
     <script type="text/javascript" src="./background.js"></script>
-    <script type="text/javascript" src="./ui.js"></script>
+    <script type="text/javascript" src="./userInterface.js"></script>
     <script type="text/javascript" src="./base.js"></script>
-    <script type="text/javascript" src="./unit.js"></script>
-    
+
+    <script type="text/javascript" src="./units/healthBar.js"></script>
+    <script type="text/javascript" src="./units/unit01.js"></script>
+    <script type="text/javascript" src="./units/unit02.js"></script>
+    <script type="text/javascript" src="./units/unit03.js"></script>
+    <script type="text/javascript" src="./units/unit04.js"></script>
+    <script type="text/javascript" src="./units/unit05.js"></script>
+    <script type="text/javascript" src="./units/unit06.js"></script>
+    <script type="text/javascript" src="./units/unit07.js"></script>
+    <script type="text/javascript" src="./units/enemySpawner.js"></script>
+
 </head>
 <body>
     <canvas id="gameWorld" width="1400" height="800" style="background: white; border: 1px solid black" tabindex="0" autofocus></canvas>
-    <br>
-    <h1>Please press "w" or "d" to move the camera.<br>
-    Please click a unit in UI to spawn a unit. (Only first three units are available so far.)</h1>
-    <br>
-    The green bar is the Exp bar. When user get to certain level, user will be able to spawn upgraded unit.
+    <br />
+    <input type="checkbox" id="debug"> Debug <input type="checkbox" id="mute"> Mute <input type="range" id="volume" min="0" max="1" value="0.1" step="0.05"> Volume
 </body>
 </html>
