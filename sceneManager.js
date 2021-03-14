@@ -35,6 +35,20 @@ class SceneManager {
         // add unit
         let enemySpawner = new EnemySpawner(this.game);
         this.game.addEntity(enemySpawner);
+
+
+        // for(var i = 0; i<10;i ++) {
+        //     this.game.addEntity(new Unit01(this.game, true));
+        //     this.game.addEntity(new Unit05(this.game, true));
+        // }
+
+        // this.game.addEntity(new Unit01(this.game, true));
+        // this.game.addEntity(new Unit02(this.game, true));
+        // this.game.addEntity(new Unit03(this.game, true));
+        // this.game.addEntity(new Unit04(this.game, false));
+        // this.game.addEntity(new Unit05(this.game, true));
+        // this.game.addEntity(new Unit06(this.game, true));
+        // this.game.addEntity(new Unit07(this.game, true));
     }
 
     updateAudio() {
@@ -52,8 +66,7 @@ class SceneManager {
 
         if (this.title && this.game.click && this.game.click.y > 470 && this.game.click.y < 500) {
             this.title = false;
-            this.loadEntities();
-            
+            this.loadEntities(); 
         }
         
         if(this.game.left){
@@ -72,7 +85,7 @@ class SceneManager {
             this.clearEntities();
             if(this.game.click && this.game.click.y > 520 && this.game.click.y < 550) {
                 this.title = true;
-                this.gameOVer = false;
+                this.gameOver = false;
             }
         }
         

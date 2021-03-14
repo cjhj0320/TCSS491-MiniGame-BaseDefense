@@ -15,9 +15,9 @@ class Unit05 {
         this.deadCounter = 0;
         this.state = 0; // 0 = walking, 1 = attacking, 2 = dying
 
-        this.hp = 500;
-        this.maxHP = 500;
-        this.attackDamage = 50;
+        this.hp = 150;
+        this.maxHP = 150;
+        this.attackDamage = 80;
         this.attackPeriod = 1.35;
         this.expAmount = 120;
 
@@ -44,19 +44,20 @@ class Unit05 {
     update() {
         // update position
         if (this.state == 0) {
-            this.x = this.isEnemy ? this.x - 1.25 : this.x + 1.25;
+            this.x = this.isEnemy ? this.x - 3 : this.x + 3;
         }
         this.updateBB();
 
         // COLLISION
         var that = this;
+        this.state = 0;
         for (var entity of this.game.entities) {
-            if (entity.BB && that.BB.collide(entity.BB) && entity !== that && (that.isEnemy != entity.isEnemy)) {
+            if (entity.BB && entity !== that && (that.isEnemy != entity.isEnemy) && that.BB.collide(entity.BB)) {
                 if ((entity instanceof Unit01 || entity instanceof Unit02 || entity instanceof Unit03 || entity instanceof Unit04 ||
                     entity instanceof Unit05 || entity instanceof Unit06 || entity instanceof Unit07 || entity instanceof Base)) {
                     that.state = 1; // attack
                     that.attackCounter += that.game.clockTick;
-                    if (that.attackCounter > that.attackPeriod) {
+                    if ((that.attackCounter > that.attackPeriod) && that.hp > 0) {
                         entity.hp -= that.attackDamage;
                         that.attackCounter = 0;
                     }

@@ -1,7 +1,7 @@
 class Unit01 {
     // x & y - the top left position on the Canvas where we want to draw the image.
-    constructor(game, isEnemy) {
-        Object.assign(this, { game, isEnemy });
+    constructor(game, isEnemy, speed) {
+        Object.assign(this, { game, isEnemy, speed});
         this.spritesheet = ASSET_MANAGER.getAsset("./img/unit/unit01.png");
 
         if (this.isEnemy) {
@@ -15,8 +15,8 @@ class Unit01 {
         this.deadCounter = 0;
         this.state = 0; // 0 = walking, 1 = attacking, 2 = dying
 
-        this.hp = 100;
-        this.maxHP = 100;
+        this.hp = 50;
+        this.maxHP = 50;
         this.attackDamage = 10;
         this.attackPeriod = 1.575;
         this.expAmount = 20;
@@ -44,19 +44,21 @@ class Unit01 {
     update() {
         // update position
         if (this.state == 0) {
-            this.x = this.isEnemy ? this.x - 1 : this.x + 1;
+            this.x = this.isEnemy ? this.x - 2 : this.x + 2;
         }
         this.updateBB();
 
         // COLLISION
         var that = this;
+
+        this.state = 0;
         for (var entity of this.game.entities) {
-            if (entity.BB && that.BB.collide(entity.BB) && entity !== that && (that.isEnemy != entity.isEnemy)) {
+            if (entity.BB && entity !== that && (that.isEnemy != entity.isEnemy) && that.BB.collide(entity.BB)) {
                 if ((entity instanceof Unit01 || entity instanceof Unit02 || entity instanceof Unit03 || entity instanceof Unit04 ||
                     entity instanceof Unit05 || entity instanceof Unit06 || entity instanceof Unit07 || entity instanceof Base)) {
                     that.state = 1; // attack
                     that.attackCounter += that.game.clockTick;
-                    if (that.attackCounter > that.attackPeriod) {
+                    if ((that.attackCounter > that.attackPeriod) && that.hp > 0) {
                         entity.hp -= that.attackDamage;
                         that.attackCounter = 0;
                     }
@@ -65,9 +67,6 @@ class Unit01 {
                     }
                     break;
                 }
-            }
-            if(entity.BB && !that.BB.collide(entity.BB)) {
-                
             }
         }
 
